@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import axios from "axios";
 import "./Content.css";
+import Playlist from "./Playlist";
 
 const Content = () => {
   const [vids, setvids] = useState([]);
@@ -35,17 +36,20 @@ const Content = () => {
   ) : (
     <Container maxWidth="md">
       <div className="player-wrapper">
-        {vids.map((x) => (
-          <ReactPlayer
-            className="react-player"
-            url={`https://www.youtube.com/watch?v=${x.snippet.resourceId.videoId}`}
-            muted={false}
-            playing={false}
-            width="100%"
-            height="100%"
-          />
-        ))}
+        {/* {vids.map((x) => ( */}
+        <ReactPlayer
+          className="react-player"
+          url={`https://www.youtube.com/watch?v=${vids[0].snippet.resourceId.videoId}`}
+          muted={false}
+          playing={false}
+          controls={true}
+          width="100%"
+          height="100%"
+        />
+        {/* )) 
+         } */}
       </div>
+      <Playlist vidsData={vids} />
     </Container>
   );
 };
